@@ -25,7 +25,9 @@ db.once("open", () => {
 // For DB Connection
 
 // For Accessing Data
-app.use(cors());
+app.use(cors({
+    origin: process.env.FRONTEND_URL
+}));
 // For Accessing Data
 
 // For Routes
