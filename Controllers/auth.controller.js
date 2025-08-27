@@ -62,9 +62,9 @@ const signInUser = async (req, res) => {
             return res.status(400).send({ status: 400, message: "Incorrect Password" });
         }
 
-        const accessToken = generateAccessToken("20s", user.email, user._id, user.userName);
+        const accessToken = generateAccessToken("10m", user.email, user._id, user.userName);
 
-        const refreshToken = generateRefreshToken("70s", user._id);
+        const refreshToken = generateRefreshToken("30m", user._id);
 
         user.refreshToken = refreshToken;
 
@@ -93,7 +93,7 @@ const refreshAccessToken = async (req, res) => {
             return res.status(404).send({ status: 404, message: "User not found" });
         }
 
-        const newAccessToken = generateAccessToken("20s", user.email, user._id);
+        const newAccessToken = generateAccessToken("10m", user.email, user._id);
 
         return res.status(200).send({ status: 200, message: "Token refreshed", accessToken: newAccessToken })
     } catch (error) {
